@@ -46,7 +46,7 @@
           </li>
           <li class="divider"></li>
           <li>
-            <a href="/siswa/hapus/{{ $data->nis }}" data-toggle="modal" data-target="#delete{{ $data->nik_warga }}">
+            <a href="" data-toggle="modal" data-target="#delete">
               <i class="glyphicon glyphicon-trash"></i> Hapus
             </a>
           </li>
@@ -69,6 +69,27 @@
     </tr>
     </tfoot>
   </table>
+
+  <div class="modal modal-danger fade" id="delete">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Danger Modal</h4>
+              </div>
+              <div class="modal-body">
+                <p>Apakah Anda Yakin Ingin Menghapus Data ini?&hellip;</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>
+                <a href="{{ route('siswa.destroy', $data->nis) }}" type="button" class="btn btn-outline">Save changes</a>
+              </div>
+            </div>
+            <!-- /.modal-content -->
+          </div>
+          <!-- /.modal-dialog -->
+        </div>
 
   <a href="/siswa/create" class="btn btn-success btn-sm">Tambah Data Siswa</a>
   @endsection

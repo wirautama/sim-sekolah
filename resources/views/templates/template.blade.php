@@ -231,18 +231,15 @@
 </script>
 
 <script>
-  $(document).ready(function() {
-    $('.select2').select2();
-});
-</script>
-
-<script>
   $('#datepicker').datepicker({
       autoclose: true
     })
-</script>
-<script>
-  $('#datepicker1').datepicker({
+
+    $('#datepicker1').datepicker({
+      autoclose: true
+    })
+
+    $('#datepicker2').datepicker({
       autoclose: true
     })
 </script>
