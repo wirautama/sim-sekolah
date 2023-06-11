@@ -243,6 +243,10 @@
       autoclose: true
     })
 
+    $('#datepicker3').datepicker({
+      autoclose: true
+    })
+
     $(document).ready(function() {
     $('.select2').select2();
   });

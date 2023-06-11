@@ -316,7 +316,7 @@
                   <div class="input-group-addon">
                     <i class="fa fa-calendar"></i>
                   </div>
-                  <input type="text" name="tanggal_diterima" value="{{old('tanggal_diterima')}}" data-date-format="yyyy-mm-dd" class="form-control pull-right" id="datepicker1">
+                  <input type="text" name="tanggal_diterima" value="{{old('tanggal_diterima')}}" data-date-format="yyyy-mm-dd" class="form-control pull-right" id="datepicker3">
                 </div>
                 @error('tanggal_diterima')
                 <div class="invalid-feedback text-danger">
