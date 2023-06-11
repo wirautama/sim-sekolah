@@ -10,10 +10,10 @@ use Carbon\Carbon;
 class SiswaController extends Controller
 {
     protected $SiswaModel;
-    public function __construct()
-    {
-        $this->SiswaModel = new SiswaModel();
-    }
+    // public function __construct()
+    // {
+    //     $this->SiswaModel = new SiswaModel();
+    // }
     /**
      * Display a listing of the resource.
      *
@@ -21,10 +21,9 @@ class SiswaController extends Controller
      */
     public function index()
     {
-        $data = [
-            'siswa' => SiswaModel::all(),
-        ];
-        return view('siswa.index', $data);
+
+        $siswa = SiswaModel::all();
+        return view('siswa.index', compact('siswa'));
     }
 
     /**
@@ -46,7 +45,7 @@ class SiswaController extends Controller
     public function store(Request $request)
     {
 
-        $formFields = $request->validate([
+        $request->validate([
             // Data Diri
             'nis' => 'required|unique:siswa',
             'nama_lengkap' => 'required',
@@ -98,8 +97,9 @@ class SiswaController extends Controller
             'avatar' => 'image|file|mimes:jpeg,png,jpg,gif,svg|max:1024'
         ]);
 
-        $this->SiswaModel->save();
-        dd($this->SiswaModel->save());
+        SiswaModel::create($request->all());
+
+        return redirect('siswa.index')->with('success', 'Data Berhasil Disimpan');
     }
 
     /**
@@ -138,7 +138,51 @@ class SiswaController extends Controller
      */
     public function update(Request $request, $nis)
     {
-        //
+        $update = [
+            'nis' => $request->nis,
+            'nama_lengkap' => $request->nama_lengkap,
+            'jenis_kelamin' => $request->jenis_kelamin,
+            'tempat_lahir' => $request->tempat_lahir,
+            'tanggal_lahir' => $request->tanggal_lahir,
+            'agama' => $request->agama,
+            'anak_ke' => $request->anak_ke,
+            'jumlah_saudara' => $request->jumlah_saudara,
+            'status_anak' => $request->status_anak,
+            'alamat' => $request->alamat,
+            'kodepos' => $request->kodepos,
+            'no_telp' => $request->no_telp,
+            'email' => $request->email,
+            'jarak' => $request->jarak,
+            'golongan_darah' => $request->golongan_darah,
+            'tinggi_badan' => $request->tinggi_badan,
+            'berat_badan' => $request->berat_badan,
+            'lulusan_dari' => $request->lulusan_dari,
+            'lama_belajar' => $request->lama_belajar,
+            'pindahan_dari' => $request->pindahan_dari,
+            'alasan' => $request->alasan,
+            'kelas' => $request->kelas,
+            'program' => $request->program,
+            'tanggal_diterima' => $request->tanggal_diterima,
+            'nama_ayah' => $request->nama_ayah,
+            'tempat_lahir_ayah' => $request->tempat_lahir_ayah,
+            'agama_ayah' => $request->agama_ayah,
+            'kewarganegaraan_ayah' => $request->kewarganegaraan_ayah,
+            'pendidikan_ayah' => $request->pendidikan_ayah,
+            'profesi_ayah' => $request->profesi_ayah,
+            'alamat_ayah' => $request->alamat_ayah,
+            'no_telp_ayah' => $request->no_telp_ayah,
+            'nama_ibu' => $request->nama_ibu,
+            'tempat_lahir_ibu' => $request->tempat_lahir_ibu,
+            'agama_ibu' => $request->agama_ibu,
+            'kewarganegaraan_ibu' => $request->kewarganegaraan_ibu,
+            'pendidikan_ibu' => $request->pendidikan_ibu,
+            'profesi_ibu' => $request->profesi_ibu,
+            'alamat_ibu' => $request->alamat_ibu,
+            'no_telp_ibu' => $request->no_telp_ibu,
+            'avatar' => $request->avatar
+        ];
+        SiswaModel::where('nis', $nis)->update($update);
+        return redirect()->route('siswa.index')->with('success', 'Data Berhasil di Update');
     }
 
     /**
@@ -149,8 +193,7 @@ class SiswaController extends Controller
      */
     public function destroy($nis)
     {
-        $siswa = SiswaModel::findOrFail($nis);
-        $siswa->delete();
+        $siswa = SiswaModel::destroy($nis);
 
         if ($siswa) {
             return redirect()->route('siswa.index')->with(['success' => 'Data Berhasil Dihapus']);

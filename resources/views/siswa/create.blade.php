@@ -287,23 +287,38 @@
                 @enderror
             </div>
 
-            <div class="form-group @error('program_studi') has-error @enderror">
-                <label for="program_studi">@error('program_studi')<i class="fa fa-times-circle-o"></i> @enderror Program Studi</label><br>
+            <div class="form-group @error('program') has-error @enderror">
+                <label for="program">@error('program')<i class="fa fa-times-circle-o"></i> @enderror Program Studi</label><br>
                 <div class="radio">
                     <label>
-                      <input type="radio" name="program_studi" id="program_studi" value="IPA" checked>
+                      <input type="radio" name="program" id="program" value="Ilmu Pengetahuan Alam" checked>
                       IPA
                     </label>
                     <label>
-                        <input type="radio" name="program_studi" id="program_studi" value="IPS">
+                        <input type="radio" name="program" id="program" value="Ilmu Pengetahuan Sosial">
                         IPS
                     </label>
                     <label>
-                        <input type="radio" name="program_studi" id="program_studi" value="BAHASA">
+                        <input type="radio" name="program" id="program" value="Bahasa">
                         Bahasa
                     </label>
                 </div>
-                @error('program_studi')
+                @error('program')
+                <div class="invalid-feedback text-danger">
+                    {{ $message }}
+                </div>
+                @enderror
+            </div>
+
+            <div class="form-group @error('tanggal_diterima') has-error @enderror">
+                <label for="tanggal_diterima">@error('tanggal_lahir_ayah')<i class="fa fa-times-circle-o"></i>@enderror Tanggal diterima:</label>
+                <div class="input-group date">
+                  <div class="input-group-addon">
+                    <i class="fa fa-calendar"></i>
+                  </div>
+                  <input type="text" name="tanggal_diterima" value="{{old('tanggal_diterima')}}" data-date-format="yyyy-mm-dd" class="form-control pull-right" id="datepicker1">
+                </div>
+                @error('tanggal_diterima')
                 <div class="invalid-feedback text-danger">
                     {{ $message }}
                 </div>
