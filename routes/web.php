@@ -19,5 +19,5 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-Route::resource('dashboard', DashboardController::class);
+Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 Route::resource('siswa', SiswaController::class);

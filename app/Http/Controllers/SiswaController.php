@@ -45,57 +45,57 @@ class SiswaController extends Controller
     public function store(Request $request)
     {
 
-        // $request->validate([
-        //     // Data Diri
-        //     'nis' => 'required|unique:siswa',
-        //     'nama_lengkap' => 'required',
-        //     'jenis_kelamin' => 'required',
-        //     'tempat_lahir' => 'required',
-        //     'tanggal_lahir' => 'required',
-        //     'agama' => 'required',
-        //     'anak_ke' => 'required',
-        //     'jumlah_saudara' => 'required',
-        //     'status_anak' => 'required',
-        //     // Keterangan tempat tinggal
-        //     'alamat' => 'required',
-        //     'kodepos' => 'required',
-        //     'no_telp' => 'required',
-        //     'email' => 'required',
-        //     'jarak' => 'required',
-        //     // Keterangan Kesehatan
-        //     'golongan_darah' => 'required',
-        //     'tinggi_badan' => 'required',
-        //     'berat_badan' => 'required',
-        //     // Keterangan Pendidikan
-        //     'lulusan_dari' => 'required',
-        //     'lama_belajar' => 'required',
-        //     'pindahan_dari',
-        //     'alasan',
-        //     'kelas' => 'required',
-        //     'program' => 'required',
-        //     'tanggal_diterima' => 'required',
-        //     // Data Ayah Kandung
-        //     'nama_ayah' => 'required',
-        //     'tempat_lahir_ayah' => 'required',
-        //     'tanggal_lahir_ayah' => 'required',
-        //     'agama_ayah' => 'required',
-        //     'kewarganegaraan_ayah' => 'required',
-        //     'pendidikan_ayah' => 'required',
-        //     'profesi_ayah' => 'required',
-        //     'alamat_ayah' => 'required',
-        //     'no_telp_ayah' => 'required',
-        //     // Data Ayah Kandung
-        //     'nama_ibu' => 'required',
-        //     'tempat_lahir_ibu' => 'required',
-        //     'tanggal_lahir_ibu' => 'required',
-        //     'agama_ibu' => 'required',
-        //     'kewarganegaraan_ibu' => 'required',
-        //     'pendidikan_ibu' => 'required',
-        //     'profesi_ibu' => 'required',
-        //     'alamat_ibu' => 'required',
-        //     'no_telp_ibu' => 'required',
-        //     'avatar' => 'image|file|mimes:jpeg,png,jpg,gif,svg|max:1024'
-        // ]);
+        $request->validate([
+            // Data Diri
+            'nis' => 'required|unique:siswa',
+            'nama_lengkap' => 'required',
+            'jenis_kelamin' => 'required',
+            'tempat_lahir' => 'required',
+            'tanggal_lahir' => 'required',
+            'agama' => 'required',
+            'anak_ke' => 'required',
+            'jumlah_saudara' => 'required',
+            'status_anak' => 'required',
+            // Keterangan tempat tinggal
+            'alamat' => 'required',
+            'kodepos' => 'required',
+            'no_telp' => 'required',
+            'email' => 'required',
+            'jarak' => 'required',
+            // Keterangan Kesehatan
+            'golongan_darah' => 'required',
+            'tinggi_badan' => 'required',
+            'berat_badan' => 'required',
+            // Keterangan Pendidikan
+            'lulusan_dari' => 'required',
+            'lama_belajar' => 'required',
+            'pindahan_dari',
+            'alasan',
+            'kelas' => 'required',
+            'program' => 'required',
+            'tanggal_diterima' => 'required',
+            // Data Ayah Kandung
+            'nama_ayah' => 'required',
+            'tempat_lahir_ayah' => 'required',
+            'tanggal_lahir_ayah' => 'required',
+            'agama_ayah' => 'required',
+            'kewarganegaraan_ayah' => 'required',
+            'pendidikan_ayah' => 'required',
+            'profesi_ayah' => 'required',
+            'alamat_ayah' => 'required',
+            'no_telp_ayah' => 'required',
+            // Data Ayah Kandung
+            'nama_ibu' => 'required',
+            'tempat_lahir_ibu' => 'required',
+            'tanggal_lahir_ibu' => 'required',
+            'agama_ibu' => 'required',
+            'kewarganegaraan_ibu' => 'required',
+            'pendidikan_ibu' => 'required',
+            'profesi_ibu' => 'required',
+            'alamat_ibu' => 'required',
+            'no_telp_ibu' => 'required',
+            'avatar' => 'image|file|mimes:jpeg,png,jpg,gif,svg|max:1024'
+        ]);
 
         SiswaModel::create([
             'nis' => $request->nis,
@@ -140,6 +140,7 @@ class SiswaController extends Controller
             'profesi_ibu' => $request->profesi_ibu,
             'alamat_ibu' => $request->alamat_ibu,
             'no_telp_ibu' => $request->no_telp_ibu,
+            'status' => $request->status,
             'avatar' => $request->avatar
         ]);
 
@@ -182,6 +183,7 @@ class SiswaController extends Controller
      */
     public function update(Request $request, $nis)
     {
+
         $update = [
             'nis' => $request->nis,
             'nama_lengkap' => $request->nama_lengkap,
@@ -225,6 +227,7 @@ class SiswaController extends Controller
             'profesi_ibu' => $request->profesi_ibu,
             'alamat_ibu' => $request->alamat_ibu,
             'no_telp_ibu' => $request->no_telp_ibu,
+            'status' => $request->status,
             'avatar' => $request->avatar
         ];
         SiswaModel::where('nis', $nis)->update($update);

@@ -39,7 +39,7 @@
   
   <header class="main-header">
     <!-- Logo -->
-    <a href="{{ asset('template') }}/index2.html" class="logo">
+    <a href="/" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>S</b>A</span>
       <!-- logo for regular state and mobile devices -->
@@ -58,7 +58,7 @@
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
           <li>
-            <a href="/dashboard"><i class="fa fa-home"></i> Dashboard</a>
+            <a href="/"><i class="fa fa-home"></i> Dashboard</a>
           </li>
           @auth
           <li class="dropdown">

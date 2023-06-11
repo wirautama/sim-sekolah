@@ -563,6 +563,20 @@
                 @enderror
                 </div>
 
+                <div class="form-group @error('status') has-error @enderror">
+                    <label for="status">@error('status')<i class="fa fa-times-circle-o"></i>@enderror Status Siswa</label>
+                    <select class="form-control select2" value="{{old('status')}}" name="status" style="width: 100%;">
+                      <option selected="selected">- Pilih Status Siswa -</option>
+                      <option value="Belum Tamat">Belum Tamat</option>
+                      <option value="Tamat">Tamat</option>
+                    </select>
+                    @error('status')
+                    <div class="invalid-feedback text-danger">
+                        {{ $message }}
+                    </div>
+                    @enderror
+                  </div>
+
                 <div class="form-group @error('avatar') has-error @enderror">
                     <label for="no_telp_ibu">@error('avatar')<i class="fa fa-times-circle-o"></i>@enderror Avatar</label><br>
                     <img class="img-preview img-fluid mb-3 col-md-4">  

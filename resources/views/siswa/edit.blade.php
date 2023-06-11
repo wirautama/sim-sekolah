@@ -33,11 +33,11 @@
                 <label for="jenis_kelamin">@error('jenis_kelamin')<i class="fa fa-times-circle-o"></i> @enderror Jenis Kelamin</label><br>
                 <div class="radio">
                     <label>
-                      <input type="radio" name="jenis_kelamin" id="jenis_kelamin" value="L" >
+                      <input type="radio" name="jenis_kelamin" id="jenis_kelamin" value="L" {{$siswa->jenis_kelamin ? 'checked' : ''}}>
                       Laki-laki
                     </label>
                     <label>
-                        <input type="radio" name="jenis_kelamin" id="jenis_kelamin" value="P">
+                        <input type="radio" name="jenis_kelamin" id="jenis_kelamin" value="P" {{$siswa->jenis_kelamin ? 'checked' : ''}}>
                         Perempuan
                       </label>
                 </div>
@@ -291,11 +291,11 @@
                 <label for="program">@error('program')<i class="fa fa-times-circle-o"></i> @enderror Program Studi</label><br>
                 <div class="radio">
                     <label>
-                      <input type="radio" name="program" id="program" value="Ilmu Pengetahuan Alam">
+                      <input type="radio" name="program" id="program" value="Ilmu Pengetahuan Alam" {{$siswa->program ? 'checked' : ''}}>
                       IPA
                     </label>
                     <label>
-                        <input type="radio" name="program" id="program" value="Ilmu Pengetahuan Sosial">
+                        <input type="radio" name="program" id="program" value="Ilmu Pengetahuan Sosial" {{$siswa->program ? 'checked' : ''}}>
                         IPS
                     </label>
                     <label>
@@ -563,10 +563,24 @@
                 @enderror
                 </div>
 
+                <div class="form-group @error('status') has-error @enderror">
+                    <label for="status">@error('status')<i class="fa fa-times-circle-o"></i>@enderror Status Siswa</label>
+                    <select class="form-control select2" name="status" style="width: 100%;">
+                      <option value="{{$siswa->status}}" selected="selected">- {{$siswa->status}} -</option>
+                      <option value="Belum Tamat">Belum Tamat</option>
+                      <option value="Tamat">Tamat</option>
+                    </select>
+                    @error('status')
+                    <div class="invalid-feedback text-danger">
+                        {{ $message }}
+                    </div>
+                    @enderror
+                  </div>
+
                 <div class="form-group @error('avatar') has-error @enderror">
-                    <label for="no_telp_ibu">@error('avatar')<i class="fa fa-times-circle-o"></i>@enderror Avatar</label><br>
+                    <label for="no_telp_ibu">@error('avatar')<i class="fa fa-times-circle-o"></i>@enderror Avatar {{$siswa->avatar}}</label><br>
                     <img class="img-preview img-fluid mb-3 col-md-4">  
-                    <input type="file" class="form-control @error('avatar') is-invalid @enderror" value="{{$siswa->avatar}}" id="avatar" name="avatar" onchange="previewImage()">
+                    <input type="file" class="form-control @error('avatar') is-invalid @enderror" id="avatar" name="avatar" onchange="previewImage()">
                 
                     @error('avatar')
                     <div class="invalid-feedback text-danger">
@@ -580,5 +594,16 @@
 
     </form>
 </div>
+
+<script>
+    $('input[type=radio][name=jenis_kelamin]').change(function() {
+    if (this.value == 'allot') {
+        // ...
+    }
+    else if (this.value == 'transfer') {
+        // ...
+    }
+});
+</script>
 
 @endsection

@@ -55,6 +55,7 @@ class SiswaModel extends Model
         'profesi_ibu',
         'alamat_ibu',
         'no_telp_ibu',
+        'status',
         'avatar'
 
     ];
