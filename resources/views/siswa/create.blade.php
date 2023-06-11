@@ -2,34 +2,51 @@
 @section('content')
 
 @section('title', 'Tambah Data Siswa')
+
+@if(session('error'))
+    <div class="alert alert-danger alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <h4><i class="icon fa fa-ban"></i> Alert!</h4>
+        {{session('error')}}
+    </div>
+@endif
+
+@if(session('success'))
+<div class="alert alert-success alert-dismissible">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    <h4><i class="icon fa fa-check"></i> Alert!</h4>
+    {{session('success')}}
+</div>
+@endif
+
 <div class="container-fluid">
     <form action="{{route('siswa.store')}}" method="POST" class="form-horizontal" enctype="multipart/form-data">
         @csrf
         <h4 class="text-bold">A. Data Pribadi Siswa</h4>
         <br>
         <div class="box-body">
-            <div class="form-group">
-            <label for="nis">NIS</label>
+            <div class="form-group @error('nis') has-error @enderror">
+            <label for="nis">@error('nis')<i class="fa fa-times-circle-o"></i> @enderror NIS</label>
             <input type="email" class="form-control" name="nis" id="nis" placeholder="Nomor Induk Siswa">
             @error('nis')
-            <div class="invalid-feedback">
+            <div class="invalid-feedback text-danger">
                 {{ $message }}
             </div>
             @enderror
             </div>
 
-            <div class="form-group">
-            <label for="nama_lengkap">Nama Lengkap</label>
-            <input type="password" class="form-control" name="nama_lengkap" id="nama_lengkap" placeholder="Nama Lengkap">
+            <div class="form-group @error('nama_lengkap') has-error @enderror">
+            <label for="nama_lengkap">@error('nama_lengkap')<i class="fa fa-times-circle-o"></i> @enderror Nama Lengkap</label>
+            <input type="text" class="form-control" name="nama_lengkap" id="nama_lengkap" placeholder="Nama Lengkap">
             @error('nama_lengkap')
-            <div class="invalid-feedback">
+            <div class="invalid-feedback text-danger">
                 {{ $message }}
             </div>
             @enderror
             </div>
 
-            <div class="form-group">
-                <label for="jenis_kelamin">Jenis Kelamin</label><br>
+            <div class="form-group @error('jenis_kelamin') has-error @enderror">
+                <label for="jenis_kelamin">@error('jenis_kelamin')<i class="fa fa-times-circle-o"></i> @enderror Jenis Kelamin</label><br>
                 <div class="radio">
                     <label>
                       <input type="radio" name="jenis_kelamin" id="jenis_kelamin" value="L" checked>
@@ -40,20 +57,25 @@
                         Perempuan
                       </label>
                 </div>
+                @error('jenis_kelamin')
+                <div class="invalid-feedback text-danger">
+                    {{ $message }}
+                </div>
+            @enderror
             </div>
 
-            <div class="form-group">
-                <label for="tempat_lahir">Tempat Lahir</label>
+            <div class="form-group @error('tempat_lahir') has-error @enderror">
+                <label for="tempat_lahir">@error('tempat_lahir')<i class="fa fa-times-circle-o"></i> @enderror Tempat Lahir</label>
                 <input type="text" class="form-control" name="tempat_lahir" id="tempat_lahir" placeholder="Tempat Lahir">
                 @error('tempat_lahir')
-                <div class="invalid-feedback">
+                <div class="invalid-feedback text-danger">
                     {{ $message }}
                 </div>
                 @enderror
             </div>
             
-            <div class="form-group">
-                <label>Tanggal Lahir:</label>
+            <div class="form-group @error('tanggal_lahir') has-error @enderror">
+                <label for="tanggal_lahir">@error('tanggal_lahir')<i class="fa fa-times-circle-o"></i> @enderror Tanggal Lahir:</label>
                 <div class="input-group date">
                   <div class="input-group-addon">
                     <i class="fa fa-calendar"></i>
@@ -61,16 +83,16 @@
                   <input type="text" name="tanggal_lahir" class="form-control pull-right" id="datepicker">
                 </div>
                 @error('tanggal_lahir')
-                <div class="invalid-feedback">
+                <div class="invalid-feedback text-danger">
                     {{ $message }}
                 </div>
                 @enderror
             </div>
 
-            <div class="form-group">
-                <label>Agama</label>
+            <div class="form-group @error('agama') has-error @enderror">
+                <label for="agama">@error('agama')<i class="fa fa-times-circle-o"></i> @enderror Agama</label>
                 <select class="form-control select2" name="agama" style="width: 100%;">
-                  <option selected="selected">- Pilih Agama -</option>
+                  <option>- Pilih Agama -</option>
                   <option value="Islam">Islam</option>
                   <option value="Kristen Katholik">Kristen Katholik</option>
                   <option value="Kristen Protestan">Kristen Protestan</option>
@@ -79,34 +101,34 @@
                   <option value="Konghucu">Konghucu</option>
                 </select>
                 @error('agama')
-                <div class="invalid-feedback">
+                <div class="invalid-feedback text-danger">
                     {{ $message }}
                 </div>
                 @enderror
               </div>
 
-            <div class="form-group">
-                <label for="anak_ke">Anak Ke</label>
+            <div class="form-group @error('anak_ke') has-error @enderror">
+                <label for="anak_ke">@error('anak_ke')<i class="fa fa-times-circle-o"></i> @enderror Anak Ke</label>
                 <input type="number" class="form-control" name="anak_ke" id="anak_ke" placeholder="Anak Ke">
                 @error('anak_ke')
-                <div class="invalid-feedback">
+                <div class="invalid-feedback text-danger">
                     {{ $message }}
                 </div>
                 @enderror
             </div>
 
-            <div class="form-group">
-                <label for="jumlah_saudara">Jumlah Saudara</label>
+            <div class="form-group @error('jumlah_saudara') has-error @enderror">
+                <label for="jumlah_saudara">@error('jumlah_saudara')<i class="fa fa-times-circle-o"></i> @enderror Jumlah Saudara</label>
                 <input type="number" class="form-control" name="jumlah_saudara" id="jumlah_saudara" placeholder="Jumlah Saudara">
                 @error('jumlah_saudara')
-                <div class="invalid-feedback">
+                <div class="invalid-feedback text-danger">
                     {{ $message }}
                 </div>
                 @enderror
             </div>
 
-            <div class="form-group">
-                <label>Status Anak (Yatim / Piatu / Yatim Piatu)</label>
+            <div class="form-group @error('status_anak') has-error @enderror">
+                <label for="status_anak">@error('status_anak')<i class="fa fa-times-circle-o"></i> @enderror Status Anak (Yatim / Piatu / Yatim Piatu)</label>
                 <select class="form-control select2" name="status_anak" style="width: 100%;">
                   <option selected="selected">- Pilih Status -</option>
                   <option value="-">-</option>
@@ -115,62 +137,64 @@
                   <option value="Yatim Piatu">Yatim Piatu</option>
                 </select>
                 @error('status_anak')
-                <div class="invalid-feedback">
+                <div class="invalid-feedback text-danger">
                     {{ $message }}
                 </div>
                 @enderror
             </div>
+
             <br>
             <h4>B. Keterangan Tempat Tinggal</h4>
             <br>
-            <div class="form-group">
-                <label for="alamat">Alamat</label>
+
+            <div class="form-group @error('alamat') has-error @enderror">
+                <label for="alamat">@error('alamat')<i class="fa fa-times-circle-o"></i> @enderror Alamat</label>
                 <input type="text" class="form-control" name="alamat" id="alamat" placeholder="Alamat Lengkap">
                 @error('alamat')
-                <div class="invalid-feedback">
+                <div class="invalid-feedback text-danger">
                     {{ $message }}
                 </div>
                 @enderror
             </div>
 
-            <div class="form-group">
-                <label for="kodepos">Kode Pos</label>
+            <div class="form-group @error('kodepos') has-error @enderror">
+                <label for="kodepos">@error('kodepos')<i class="fa fa-times-circle-o"></i> @enderror Kode Pos</label>
                 <input type="number" class="form-control" name="kodepos" id="kodepos" placeholder="Kode Pos">
                 @error('kodepos')
-                <div class="invalid-feedback">
+                <div class="invalid-feedback text-danger">
                     {{ $message }}
                 </div>
                 @enderror
             </div>
 
-            <div class="form-group">
-                <label for="no_telp">No. Telepon</label>
+            <div class="form-group @error('no_telp') has-error @enderror">
+                <label for="no_telp">@error('no_telp')<i class="fa fa-times-circle-o"></i> @enderror No. Telepon</label>
                 <input type="number" class="form-control" name="no_telp" id="no_telp" placeholder="No.Telepon">
                 @error('no_telp')
-                <div class="invalid-feedback">
+                <div class="invalid-feedback text-danger">
                     {{ $message }}
                 </div>
                 @enderror
             </div>
 
-            <div class="form-group">
-                <label for="email">Email</label>
+            <div class="form-group @error('email') has-error @enderror">
+                <label for="email">@error('email')<i class="fa fa-times-circle-o"></i> @enderror Email</label>
                 <input type="email" class="form-control" name="email" id="email" placeholder="Email">
                 @error('email')
-                <div class="invalid-feedback">
+                <div class="invalid-feedback text-danger">
                     {{ $message }}
                 </div>
                 @enderror
             </div>
 
-            <div class="form-group">
-                <label for="jarak">Jarak Tempat Tinggal Ke Sekolah</label>
+            <div class="form-group @error('jarak') has-error @enderror">
+                <label for="jarak">@error('jarak')<i class="fa fa-times-circle-o"></i> @enderror Jarak Tempat Tinggal Ke Sekolah</label>
                 <div class="input-group">
                     <input type="number" name="jarak" class="form-control" placeholder="Jarak (Km)">
                     <span class="input-group-addon">Km</span>
                 </div>
                 @error('jarak')
-                <div class="invalid-feedback">
+                <div class="invalid-feedback text-danger">
                     {{ $message }}
                 </div>
                 @enderror
@@ -180,8 +204,8 @@
             <h4>C. Keterangan Kesehatan</h4>
             <br>
 
-            <div class="form-group">
-                <label>Golongan Darah</label>
+            <div class="form-group @error('golongan_darah') has-error @enderror">
+                <label for="golongan_darah">@error('golongan_darah')<i class="fa fa-times-circle-o"></i> @enderror Golongan Darah</label>
                 <select class="form-control select2" name="golongan_darah" style="width: 100%;">
                   <option selected="selected">- Pilih Golongan Darah -</option>
                   <option value="A">A</option>
@@ -190,33 +214,33 @@
                   <option value="O">O</option>
                 </select>
                 @error('golongan_darah')
-                <div class="invalid-feedback">
+                <div class="invalid-feedback text-danger">
                     {{ $message }}
                 </div>
                 @enderror
             </div>
 
-            <div class="form-group">
-                <label for="tinggi_badan">Tinggi Badan</label>
+            <div class="form-group @error('tinggi_badan') has-error @enderror">
+                <label for="tinggi_badan">@error('tinggi_badan')<i class="fa fa-times-circle-o"></i> @enderror Tinggi Badan</label>
                 <div class="input-group">
                     <input type="number" name="tinggi_badan" class="form-control" placeholder="Tinggi (Cm)">
                     <span class="input-group-addon">Cm</span>
                 </div>
                 @error('tinggi_badan')
-                <div class="invalid-feedback">
+                <div class="invalid-feedback text-danger">
                     {{ $message }}
                 </div>
                 @enderror
             </div>
 
-            <div class="form-group">
-                <label for="berat_badan">Berat Badan</label>
+            <div class="form-group @error('berat_badan') has-error @enderror">
+                <label for="berat_badan">@error('berat_badan')<i class="fa fa-times-circle-o"></i> @enderror Berat Badan</label>
                 <div class="input-group">
                     <input type="number" name="berat_badan" class="form-control" placeholder="Berat (Kg)">
                     <span class="input-group-addon">Kg</span>
                 </div>
                 @error('berat_badan')
-                <div class="invalid-feedback">
+                <div class="invalid-feedback text-danger">
                     {{ $message }}
                 </div>
                 @enderror
@@ -226,61 +250,61 @@
             <h4>D. Keterangan Pendidikan</h4>
             <br>
 
-            <div class="form-group">
-                <label for="lulusan_dari">Pendidikan Sebelumnya</label>
+            <div class="form-group @error('lulusan_dari') has-error @enderror">
+                <label for="lulusan_dari">@error('lulusan_dari')<i class="fa fa-times-circle-o"></i> @enderror Pendidikan Sebelumnya</label>
                 <input type="text" name="lulusan_dari" class="form-control" id="lulusan_dari" placeholder="Lulusan dari">
                 @error('lulusan_dari')
-                <div class="invalid-feedback">
+                <div class="invalid-feedback text-danger">
                     {{ $message }}
                 </div>
             @enderror
             </div>
 
-            <div class="form-group">
-                <label for="lama_belajar">Lama Belajar</label>
+            <div class="form-group @error('lama_belajar') has-error @enderror">
+                <label for="lama_belajar">@error('lama_belajar')<i class="fa fa-times-circle-o"></i> @enderror Lama Belajar</label>
                 <div class="input-group">
                     <input type="number" name="lama_belajar" class="form-control" placeholder="Lama Belajar dari Sekolah Sebelumnya (Tahun)">
                     <span class="input-group-addon">Tahun</span>
                 </div>
                 @error('lama_belajar')
-                <div class="invalid-feedback">
+                <div class="invalid-feedback text-danger">
                     {{ $message }}
                 </div>
                 @enderror
             </div>
 
-            <div class="form-group">
-                <label for="pindahan_dari">Pindahan dari Sekolah</label>
+            <div class="form-group @error('pindahan_dari') has-error @enderror">
+                <label for="pindahan_dari">@error('pindahan_dari')<i class="fa fa-times-circle-o"></i> @enderror Pindahan dari Sekolah</label>
                 <input type="text" class="form-control" name="pindahan_dari" id="pindahan_dari" placeholder="Sekolah Sebelumnya">
                 @error('pindahan_dari')
-                <div class="invalid-feedback">
+                <div class="invalid-feedback text-danger">
                     {{ $message }}
                 </div>
                 @enderror
             </div>
 
-            <div class="form-group">
-                <label for="alasan">Alasan Pindah</label>
+            <div class="form-group @error('alasan') has-error @enderror">
+                <label for="alasan">@error('alasan')<i class="fa fa-times-circle-o"></i> @enderror Alasan Pindah</label>
                 <input type="text" class="form-control" id="alasan" name="alasan" placeholder="Alasan Pindah dari Sekolah Sebelumnya">
                 @error('alasan')
-                <div class="invalid-feedback">
+                <div class="invalid-feedback text-danger">
                     {{ $message }}
                 </div>
                 @enderror
             </div>
 
-            <div class="form-group">
-                <label for="kelas">Diterima di Sekolah Ini</label>
+            <div class="form-group @error('kelas') has-error @enderror">
+                <label for="kelas">@error('kelas')<i class="fa fa-times-circle-o"></i> @enderror Diterima di Sekolah Ini</label>
                 <input type="text" class="form-control" name="kelas" id="kelas" placeholder="Di Kelas">
                 @error('kelas')
-                <div class="invalid-feedback">
+                <div class="invalid-feedback text-danger">
                     {{ $message }}
                 </div>
                 @enderror
             </div>
 
-            <div class="form-group">
-                <label for="jenis_kelamin">Program Studi</label><br>
+            <div class="form-group @error('program_studi') has-error @enderror">
+                <label for="program_studi">@error('program_studi')<i class="fa fa-times-circle-o"></i> @enderror Program Studi</label><br>
                 <div class="radio">
                     <label>
                       <input type="radio" name="program_studi" id="program_studi" value="IPA" checked>
@@ -296,7 +320,7 @@
                     </label>
                 </div>
                 @error('program_studi')
-                <div class="invalid-feedback">
+                <div class="invalid-feedback text-danger">
                     {{ $message }}
                 </div>
                 @enderror
@@ -306,28 +330,28 @@
             <h4>E. Data Ayah Kandung</h4>
             <br>
 
-            <div class="form-group">
-                <label for="nama_ayah">Nama Ayah</label>
-                <input type="password" class="form-control" name="nama_ayah" id="nama_ayah" placeholder="Nama Lengkap Ayah">
+            <div class="form-group @error('nama_ayah') has-error @enderror">
+                <label for="nama_ayah">@error('nama_ayah')<i class="fa fa-times-circle-o"></i> @enderror Nama Ayah</label>
+                <input type="text" class="form-control" name="nama_ayah" id="nama_ayah" placeholder="Nama Lengkap Ayah">
                 @error('nama_ayah')
-                <div class="invalid-feedback">
+                <div class="invalid-feedback text-danger">
                     {{ $message }}
                 </div>
                 @enderror
             </div>
 
-            <div class="form-group">
-                <label for="tempat_lahir_ayah">Tempat Lahir</label>
+            <div class="form-group @error('tempat_lahir_ayah') has-error @enderror">
+                <label for="tempat_lahir_ayah">@error('tempat_lahir_ayah')<i class="fa fa-times-circle-o"></i> @enderror Tempat Lahir</label>
                 <input type="text" class="form-control" name="tempat_lahir_ayah" id="tempat_lahir_ayah" placeholder="Tempat Lahir">
                 @error('tempat_lahir_ayah')
-                <div class="invalid-feedback">
+                <div class="invalid-feedback text-danger">
                     {{ $message }}
                 </div>
                 @enderror
             </div>
             
-            <div class="form-group">
-                <label>Tanggal Lahir Ayah:</label>
+            <div class="form-group @error('tanggal_lahir_ayah') has-error @enderror">
+                <label for="tanggal_lahir_ayah">@error('tanggal_lahir_ayah')<i class="fa fa-times-circle-o"></i>@enderror Tanggal Lahir Ayah:</label>
                 <div class="input-group date">
                   <div class="input-group-addon">
                     <i class="fa fa-calendar"></i>
@@ -335,14 +359,14 @@
                   <input type="text" name="tanggal_lahir_ayah" class="form-control pull-right" id="datepicker1">
                 </div>
                 @error('tanggal_lahir_ayah')
-                <div class="invalid-feedback">
+                <div class="invalid-feedback text-danger">
                     {{ $message }}
                 </div>
                 @enderror
             </div>
 
-            <div class="form-group">
-                <label>Agama</label>
+            <div class="form-group @error('agama_ayah') has-error @enderror">
+                <label for="agama">@error('agama_ayah')<i class="fa fa-times-circle-o"></i>@enderror Agama</label>
                 <select class="form-control select2" name="agama_ayah" style="width: 100%;">
                   <option selected="selected">- Pilih Agama -</option>
                   <option value="Islam">Islam</option>
@@ -353,24 +377,24 @@
                   <option value="Konghucu">Konghucu</option>
                 </select>
                 @error('agama_ayah')
-                <div class="invalid-feedback">
+                <div class="invalid-feedback text-danger">
                     {{ $message }}
                 </div>
                 @enderror
               </div>
 
-              <div class="form-group">
-                <label for="kewarganegaraan_ayah">Kewarganegaraan</label>
+              <div class="form-group @error('kewarganegaraan_ayah') has-error @enderror">
+                <label for="kewarganegaraan_ayah">@error('kewarganegaraan_ayah')<i class="fa fa-times-circle-o"></i>@enderror Kewarganegaraan</label>
                 <input type="text" class="form-control" name="kewarganegaraan_ayah" id="kewarganegaraan_ayah" placeholder="Kewarganegaraan">
                 @error('kewarganegaraan')
-                <div class="invalid-feedback">
+                <div class="invalid-feedback text-danger">
                     {{ $message }}
                 </div>
                 @enderror
               </div>
 
-            <div class="form-group">
-                <label>Pendidikan Terakhir</label>
+            <div class="form-group @error('pendidikan_ayah') has-error @enderror">
+                <label for="pendidikan_ayah">@error('pendidikan_ayah')<i class="fa fa-times-circle-o"></i>@enderror Pendidikan Terakhir</label>
                 <select class="form-control select2" name="pendidikan_ayah" style="width: 100%;">
                   <option selected="selected">- Pilih Pendidikan -</option>
                   <option value="Tidak / Belum Sekolah">Tidak / Belum Sekolah</option>
@@ -385,37 +409,37 @@
                   <option value="Strata III">Strata III</option>
                 </select>
                 @error('pendidikan_ayah')
-                <div class="invalid-feedback">
+                <div class="invalid-feedback text-danger">
                     {{ $message }}
                 </div>
                 @enderror
               </div>
 
-              <div class="form-group">
-                <label for="pekerjaan_ayah">Pekerjaan</label>
+              <div class="form-group @error('profesi_ayah') has-error @enderror">
+                <label for="pekerjaan_ayah">@error('profesi_ayah')<i class="fa fa-times-circle-o"></i>@enderror Pekerjaan</label>
                 <input type="text" class="form-control" name="pekerjaan_ayah" id="pekerjaan_ayah" placeholder="Pekerjaan">
                 @error('pekerjaan_ayah')
-                <div class="invalid-feedback">
+                <div class="invalid-feedback text-danger">
                     {{ $message }}
                 </div>
                 @enderror
               </div>
 
-              <div class="form-group">
-                <label for="alamat_ayah">Alamat</label>
+              <div class="form-group @error('alamat_ayah') has-error @enderror">
+                <label for="alamat_ayah">@error('alamat_ayah')<i class="fa fa-times-circle-o"></i>@enderror Alamat</label>
                 <input type="text" class="form-control" name="alamat_ayah" id="alamat_ayah" placeholder="Alamat Lengkap">
                 @error('alamat_ayah')
-                <div class="invalid-feedback">
+                <div class="invalid-feedback text-danger">
                     {{ $message }}
                 </div>
                 @enderror
               </div>
 
-              <div class="form-group">
-                <label for="no_telp_ayah">No. Telepon</label>
+              <div class="form-group @error('no_telp_ayah') has-error @enderror">
+                <label for="no_telp_ayah">@error('no_telp_ayah')<i class="fa fa-times-circle-o"></i>@enderror No. Telepon</label>
                 <input type="text" class="form-control" name="no_telp_ayah" id="no_telp_ayah" placeholder="No. Telepon / HP">
                 @error('no_telp_ayah')
-                <div class="invalid-feedback">
+                <div class="invalid-feedback text-danger">
                     {{ $message }}
                 </div>
                 @enderror
@@ -425,28 +449,28 @@
               <h4>F. Data Ibu Kandung</h4>
               <br>
   
-              <div class="form-group">
-                  <label for="nama_ibu">Nama Ibu</label>
+              <div class="form-group @error('nama_ibu') has-error @enderror">
+                  <label for="nama_ibu">@error('nama_ibu')<i class="fa fa-times-circle-o"></i>@enderror Nama Ibu</label>
                   <input type="text" class="form-control" name="nama_ibu" id="nama_ibu" placeholder="Nama Lengkap Ibu">
                   @error('nama_ibu')
-                  <div class="invalid-feedback">
+                  <div class="invalid-feedback text-danger">
                     {{ $message }}
                   </div>
                   @enderror
               </div>
   
-              <div class="form-group">
-                  <label for="tempat_lahir_ibu">Tempat Lahir</label>
+              <div class="form-group @error('tempat_lahir_ibu') has-error @enderror">
+                  <label for="tempat_lahir_ibu">@error('tempat_lahir_ibu')<i class="fa fa-times-circle-o"></i>@enderror Tempat Lahir</label>
                   <input type="text" class="form-control" name="tempat_lahir_ibu" id="tempat_lahir_ibu" placeholder="Tempat Lahir">
                   @error('tempat_lahir_ibu')
-                  <div class="invalid-feedback">
+                  <div class="invalid-feedback text-danger">
                     {{ $message }}
                   </div>
                 @enderror
               </div>
               
-              <div class="form-group">
-                  <label>Tanggal Lahir :</label>
+              <div class="form-group @error('tanggal_lahir_ibu') has-error @enderror">
+                  <label for="tanggal_lahir">@error('tanggal_lahir_ibu')<i class="fa fa-times-circle-o"></i>@enderror Tanggal Lahir :</label>
                   <div class="input-group date">
                     <div class="input-group-addon">
                       <i class="fa fa-calendar"></i>
@@ -454,14 +478,14 @@
                     <input type="text" name="tanggal_lahir_ibu" class="form-control pull-right" id="datepicker2">
                   </div>
                   @error('tanggal_lahir_ibu')
-                <div class="invalid-feedback">
+                <div class="invalid-feedback text-danger">
                     {{ $message }}
                 </div>
                 @enderror
               </div>
   
-              <div class="form-group">
-                  <label>Agama</label>
+              <div class="form-group @error('agama_ibu') has-error @enderror">
+                  <label for="agama_ibu">@error('agama_ibu')<i class="fa fa-times-circle-o"></i>@enderror Agama</label>
                   <select class="form-control select2" name="agama_ibu" style="width: 100%;">
                     <option selected="selected">- Pilih Agama -</option>
                     <option value="Islam">Islam</option>
@@ -472,24 +496,24 @@
                     <option value="Konghucu">Konghucu</option>
                   </select>
                   @error('agama_ibu')
-                  <div class="invalid-feedback">
+                  <div class="invalid-feedback text-danger">
                     {{ $message }}
                   </div>
                   @enderror
                 </div>
   
-                <div class="form-group">
-                  <label for="kewarganegaraan_ibu">Kewarganegaraan</label>
+                <div class="form-group @error('kewarganegaraan_ibu') has-error @enderror">
+                  <label for="kewarganegaraan_ibu">@error('kewarganegaraan_ibu')<i class="fa fa-times-circle-o"></i>@enderror Kewarganegaraan</label>
                   <input type="text" class="form-control" name="kewarganegaraan_ibu" id="kewarganegaraan_ibu" placeholder="Kewarganegaraan">
                   @error('kewarganegaraan')
-                  <div class="invalid-feedback">
+                  <div class="invalid-feedback text-danger">
                     {{ $message }}
                   </div>
                   @enderror
                 </div>
   
-              <div class="form-group">
-                  <label>Pendidikan Terakhir</label>
+              <div class="form-group @error('pendidikan_ibu') has-error @enderror">
+                  <label for="pendidikan_ibu">@error('pendidikan_ibu')<i class="fa fa-times-circle-o"></i>@enderror Pendidikan Terakhir</label>
                   <select class="form-control select2" name="pendidikan_ibu" style="width: 100%;">
                     <option selected="selected">- Pilih Pendidikan -</option>
                     <option value="Tidak / Belum Sekolah">Tidak / Belum Sekolah</option>
@@ -504,40 +528,52 @@
                     <option value="Strata III">Strata III</option>
                   </select>
                   @error('pendidikan_ibu')
-                <div class="invalid-feedback">
+                <div class="invalid-feedback text-danger">
                     {{ $message }}
                 </div>
                 @enderror
                 </div>
   
-                <div class="form-group">
-                  <label for="pekerjaan_ibu">Pekerjaan</label>
-                  <input type="text" class="form-control" name="pekerjaan_ibu" id="pekerjaan_ibu" placeholder="Pekerjaan">
-                  @error('pekerjaan_ibu')
-                <div class="invalid-feedback">
+                <div class="form-group @error('profesi_ibu') has-error @enderror">
+                  <label for="pekerjaan_ibu">@error('profesi_ibu')<i class="fa fa-times-circle-o"></i>@enderror Pekerjaan</label>
+                  <input type="text" class="form-control" name="profesi_ibu" id="profesi_ibu" placeholder="Pekerjaan">
+                  @error('profesi_ibu')
+                <div class="invalid-feedback text-danger">
                     {{ $message }}
                 </div>
                 @enderror
                 </div>
   
-                <div class="form-group">
-                  <label for="alamat_ibu">Alamat</label>
+                <div class="form-group @error('alamat_ibu') has-error @enderror">
+                  <label for="alamat_ibu">@error('alamat_ibu')<i class="fa fa-times-circle-o"></i>@enderror Alamat</label>
                   <input type="text" class="form-control" name="alamat_ibu" id="alamat_ibu" placeholder="Alamat Lengkap">
                   @error('alamat_ibu')
-                <div class="invalid-feedback">
+                <div class="invalid-feedback text-danger">
                     {{ $message }}
                 </div>
                 @enderror
                 </div>
   
-                <div class="form-group">
-                  <label for="no_telp_ibu">No. Telepon</label>
+                <div class="form-group @error('no_telp_ibu') has-error @enderror">
+                  <label for="no_telp_ibu">@error('no_telp_ibu')<i class="fa fa-times-circle-o"></i>@enderror No. Telepon</label>
                   <input type="text" class="form-control" name="no_telp_ibu" id="no_telp_ibu" placeholder="No. Telepon / HP">
                   @error('no_telp_ibu')
-                <div class="invalid-feedback">
+                  <div class="invalid-feedback text-danger">
                     {{ $message }}
                 </div>
                 @enderror
+                </div>
+
+                <div class="form-group @error('avatar') has-error @enderror">
+                    <label for="no_telp_ibu">@error('avatar')<i class="fa fa-times-circle-o"></i>@enderror Avatar</label><br>
+                    <img class="img-preview img-fluid mb-3 col-md-4">  
+                    <input type="file" class="form-control @error('avatar') is-invalid @enderror" id="avatar" name="avatar" onchange="previewImage()">
+                
+                    @error('avatar')
+                    <div class="invalid-feedback text-danger">
+                        {{ $message }}
+                    </div>
+                    @enderror
                 </div>
             </div>
             <button type="submit" class="btn btn-success">Simpan</button>   

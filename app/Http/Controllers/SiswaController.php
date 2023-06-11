@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\SiswaModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Carbon\Carbon;
 
 class SiswaController extends Controller
 {
@@ -46,7 +47,7 @@ class SiswaController extends Controller
     {
         $this->validate($request, [
             // Data Diri
-            'nis' => 'required',
+            'nis' => 'required|unique:siswa',
             'nama_lengkap' => 'required',
             'jenis_kelamin' => 'required',
             'tempat_lahir' => 'required',
@@ -93,6 +94,7 @@ class SiswaController extends Controller
             'profesi_ibu' => 'required',
             'alamat_ibu' => 'required',
             'no_telp_ibu' => 'required',
+            'avatar' => 'required'
         ]);
 
         $siswa = SiswaModel::create([
@@ -144,13 +146,16 @@ class SiswaController extends Controller
             'profesi_ibu' => Request()->profesi_ibu,
             'alamat_ibu' => Request()->alamat_ibu,
             'no_telp_ibu' => Request()->no_telp_ibu,
+            'avatar' => Request()->avatar,
+            'created_at' => Carbon::now()->toDateTimeString(),
+            'updated_at' => Carbon::now()->toDateTimeString()
 
         ]);
 
         if ($siswa) {
-            return redirect()->route('siswa.index')->with(['success' => 'Data Baru Berhasil Dibuat']);
+            return redirect()->route('siswa.index')->with('success', 'Data Baru Berhasil Dibuat');
         } else {
-            return redirect()->route('siswa.index')->with(['error' => 'Data Baru Gagal Dibuat']);
+            return redirect()->route('siswa.index')->with('error', 'Data Baru Gagal Dibuat');
         }
     }
 
