@@ -91,7 +91,7 @@
       <!-- Sidebar user panel -->
       <div class="user-panel">
         <div class="pull-left image">
-          <img src="" class="mx-auto d-block" alt="User Image">
+          <img src="{{asset('img')}}/default.svg" class="mx-auto d-block" alt="User Image">
         </div>
         <div class="pull-left info">
           <p></p>
@@ -242,6 +242,10 @@
     $('#datepicker2').datepicker({
       autoclose: true
     })
+
+    $(document).ready(function() {
+    $('.select2').select2();
+  });
 </script>
 <script>
 

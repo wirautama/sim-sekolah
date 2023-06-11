@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class TblSiswa extends Migration
+class Siswa extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class TblSiswa extends Migration
      */
     public function up()
     {
-        Schema::create('tbl_siswa', function (Blueprint $table) {
+        Schema::create('siswa', function (Blueprint $table) {
             // Data Pribadi Siswa
             $table->string('nis', 15)->primary();
             $table->string('nama_lengkap', 255);
@@ -81,6 +81,6 @@ class TblSiswa extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tbl_siswa');
+        Schema::dropIfExists('siswa');
     }
 }

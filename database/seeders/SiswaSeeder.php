@@ -16,9 +16,9 @@ class SiswaSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('tbl_siswa')->insert([
+        DB::table('siswa')->insert([
             // Data Pribadi Siswa
-            'nis' => '0002011434',
+            'nis' => '20002011434',
             'nama_lengkap' => 'Aditya Wira Utama',
             'jenis_kelamin' => 'L',
             'tempat_lahir' => 'Sidoarjo',

@@ -2,6 +2,21 @@
 @section('content')
 
 @section('title', 'Data Siswa')
+@if(session()->has('error'))
+    <div class="alert alert-danger alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <h4><i class="icon fa fa-ban"></i> Alert!</h4>
+        {{session('error')}}
+    </div>
+@endif
+
+@if(session()->has('success'))
+<div class="alert alert-success alert-dismissible">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    <h4><i class="icon fa fa-check"></i> Alert!</h4>
+    {{session('success')}}
+</div>
+@endif
 <table id="example1" class="table table-bordered table-striped">
     <thead>
     <tr>
@@ -38,11 +53,11 @@
         </button>
         <ul class="dropdown-menu pull-right" role="menu">
           <li>
-            <a href="/siswa/{{$data->nis}}"><i class="glyphicon glyphicon-sunglasses"></i> Detail</a>
+            <a href="{{route('siswa.show', $data->nis)}}"><i class="glyphicon glyphicon-sunglasses"></i> Detail</a>
           </li>
           <li class="divider"></li>
           <li>
-            <a href="/siswa/edit/{{ $data->nis }}"><i class="glyphicon glyphicon-edit"></i> Ubah</a>
+            <a href="{{route('siswa.edit', $data->nis)}}"><i class="glyphicon glyphicon-edit"></i> Ubah</a>
           </li>
           <li class="divider"></li>
           <li>
@@ -76,21 +91,25 @@
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Danger Modal</h4>
+                <h4 class="modal-title">{{$data->nis}}</h4>
               </div>
               <div class="modal-body">
-                <p>Apakah Anda Yakin Ingin Menghapus Data ini?&hellip;</p>
+                <p>Apakah Anda Yakin Ingin Menghapus Data ' {{$data->nama_lengkap}} '?&hellip;</p>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>
-                <a href="{{ route('siswa.destroy', $data->nis) }}" type="button" class="btn btn-outline">Save changes</a>
+                <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Tidak</button>
+                <form action="{{route('siswa.destroy', $data->nis)}}" method="POST">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn btn-outline">Ya</a>
               </div>
+            </form>
             </div>
             <!-- /.modal-content -->
           </div>
           <!-- /.modal-dialog -->
         </div>
-
-  <a href="/siswa/create" class="btn btn-success btn-sm">Tambah Data Siswa</a>
+        
+  <a href="{{route('siswa.create')}}" class="btn btn-success btn-sm">Tambah Data Siswa</a>
   @endsection
 

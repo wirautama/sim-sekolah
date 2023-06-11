@@ -45,7 +45,8 @@ class SiswaController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
+
+        $formFields = $request->validate([
             // Data Diri
             'nis' => 'required|unique:siswa',
             'nama_lengkap' => 'required',
@@ -94,69 +95,11 @@ class SiswaController extends Controller
             'profesi_ibu' => 'required',
             'alamat_ibu' => 'required',
             'no_telp_ibu' => 'required',
-            'avatar' => 'required'
+            'avatar' => 'image|file|mimes:jpeg,png,jpg,gif,svg|max:1024'
         ]);
 
-        $siswa = SiswaModel::create([
-            // Data diri
-            'nis' => Request()->nis,
-            'nama_lengkap' => Request()->nama_lengkap,
-            'jenis_kelamin' => Request()->jenis_kelamin,
-            'tempat_lahir' => Request()->tempat_lahir,
-            'tanggal_lahir' => Request()->tanggal_lahir,
-            'agama' => Request()->agama,
-            'anak_ke' => Request()->anak_ke,
-            'jumlah_saudara' => Request()->jumlah_saudara,
-            'status_anak' => Request()->status_anak,
-            // Keterangan Tempat Tinggal
-            'alamat' => Request()->alamat,
-            'kodepos' => Request()->kodepos,
-            'no_telp' => Request()->no_telp,
-            'email' => Request()->email,
-            'jarak' => Request()->jarak,
-            // Keterangan Kesehatan
-            'golongan_darah' => Request()->golongan_darah,
-            'tinggi_badan' => Request()->tinggi_badan,
-            'berat_badan' => Request()->berat_badan,
-            // Keterangan Pendidikan
-            'lulusan_dari' => Request()->lulusan_dari,
-            'lama_belajar' => Request()->lama_belajar,
-            'pindahan_dari' => Request()->pindahan_dari,
-            'alasan' => Request()->alasan,
-            'kelas' => Request()->kelas,
-            'program' => Request()->program_studi,
-            'tanggal_diterima' => Request()->tanggal_diterima,
-            // Data Ayah Kandung
-            'nama_ayah' => Request()->nama_ayah,
-            'tempat_lahir_ayah' => Request()->tempat_lahir_ayah,
-            'tanggal_lahir_ayah' => Request()->tanggal_lahir_ayah,
-            'agama_ayah' => Request()->agama_ayah,
-            'kewarganegaraan_ayah' => Request()->kewarganegaraan_ayah,
-            'pendidikan_ayah' => Request()->pendidikan_ayah,
-            'profesi_ayah' => Request()->profesi_ayah,
-            'alamat_ayah' => Request()->alamat_ayah,
-            'no_telp_ayah' => Request()->no_telp_ayah,
-            // Data ibu Kandung
-            'nama_ibu' => Request()->nama_ibu,
-            'tempat_lahir_ibu' => Request()->tempat_lahir_ibu,
-            'tanggal_lahir_ibu' => Request()->tanggal_lahir_ibu,
-            'agama_ibu' => Request()->agama_ibu,
-            'kewarganegaraan_ibu' => Request()->kewarganegaraan_ibu,
-            'pendidikan_ibu' => Request()->pendidikan_ibu,
-            'profesi_ibu' => Request()->profesi_ibu,
-            'alamat_ibu' => Request()->alamat_ibu,
-            'no_telp_ibu' => Request()->no_telp_ibu,
-            'avatar' => Request()->avatar,
-            'created_at' => Carbon::now()->toDateTimeString(),
-            'updated_at' => Carbon::now()->toDateTimeString()
-
-        ]);
-
-        if ($siswa) {
-            return redirect()->route('siswa.index')->with('success', 'Data Baru Berhasil Dibuat');
-        } else {
-            return redirect()->route('siswa.index')->with('error', 'Data Baru Gagal Dibuat');
-        }
+        $this->SiswaModel->save();
+        dd($this->SiswaModel->save());
     }
 
     /**
@@ -181,7 +124,9 @@ class SiswaController extends Controller
      */
     public function edit($nis)
     {
-        //
+        $siswa = SiswaModel::find($nis);
+
+        return view('siswa.edit', compact('siswa'));
     }
 
     /**
