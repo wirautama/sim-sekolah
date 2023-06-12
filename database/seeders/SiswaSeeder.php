@@ -18,7 +18,7 @@ class SiswaSeeder extends Seeder
     {
         DB::table('siswa')->insert([
             // Data Pribadi Siswa
-            'nis' => '20002011434',
+            'nis' => 20002011434,
             'nama_lengkap' => 'Aditya Wira Utama',
             'jenis_kelamin' => 'L',
             'tempat_lahir' => 'Sidoarjo',
@@ -31,7 +31,7 @@ class SiswaSeeder extends Seeder
             'alamat' => 'Ds. Kejapanan Gang Harum Manis RT.01 RW.26, Gempol, Pasuruan',
             'kodepos' => 67155,
             'no_telp' => '085157127155',
-            'email' => Str::random(10) . '@gmail.com',
+            'email' =>  'wiraaditya@gmail.com',
             'jarak' => 13,
             // Keterangan kesehatan
             'golongan_darah' => 'O',

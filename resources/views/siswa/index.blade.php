@@ -85,6 +85,7 @@
     </tfoot>
   </table>
 
+  @foreach ($siswa as $data)
   <div class="modal modal-danger fade" id="delete">
           <div class="modal-dialog">
             <div class="modal-content">
@@ -109,7 +110,7 @@
           </div>
           <!-- /.modal-dialog -->
         </div>
-        
+   @endforeach     
   <a href="{{route('siswa.create')}}" class="btn btn-success btn-sm">Tambah Data Siswa</a>
   @endsection
 

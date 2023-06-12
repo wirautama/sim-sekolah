@@ -15,7 +15,7 @@ class Siswa extends Migration
     {
         Schema::create('siswa', function (Blueprint $table) {
             // Data Pribadi Siswa
-            $table->string('nis', 15)->primary();
+            $table->bigInteger('nis')->primary();
             $table->string('nama_lengkap', 255);
             $table->enum('jenis_kelamin', ['L', 'P']);
             $table->string('tempat_lahir', 100);

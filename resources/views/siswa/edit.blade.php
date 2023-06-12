@@ -76,7 +76,7 @@
             <div class="form-group @error('agama') has-error @enderror">
                 <label for="agama">@error('agama')<i class="fa fa-times-circle-o"></i> @enderror Agama</label>
                 <select class="form-control select2"  name="agama" style="width: 100%;">
-                  <option value="{{$siswa->agama}}" selected>- {{$siswa->agama}} -</option>
+                  <option value="{{$siswa->agama}}" selected disabled>{{$siswa->agama}}</option>
                   <option value="Islam">Islam</option>
                   <option value="Kristen Katholik">Kristen Katholik</option>
                   <option value="Kristen Protestan">Kristen Protestan</option>
@@ -114,7 +114,7 @@
             <div class="form-group @error('status_anak') has-error @enderror">
                 <label for="status_anak">@error('status_anak')<i class="fa fa-times-circle-o"></i> @enderror Status Anak (Yatim / Piatu / Yatim Piatu)</label>
                 <select class="form-control select2" value="{{old('status_anak')}}" name="status_anak" style="width: 100%;">
-                  <option value="{{$siswa->status_anak}}" selected="selected">( {{$siswa->status_anak}} )</option>
+                  <option value="{{$siswa->status_anak}}" selected disabled>{{$siswa->status_anak}}</option>
                   <option value="-">-</option>
                   <option value="Yatim">Yatim</option>
                   <option value="Piatu">Piatu</option>
@@ -191,7 +191,7 @@
             <div class="form-group @error('golongan_darah') has-error @enderror">
                 <label for="golongan_darah">@error('golongan_darah')<i class="fa fa-times-circle-o"></i> @enderror Golongan Darah</label>
                 <select class="form-control select2" value="{{old('golongan_darah')}}" name="golongan_darah" style="width: 100%;">
-                  <option value="{{$siswa->golongan_darah}}" selected="selected">- {{$siswa->golongan_darah}} -</option>
+                  <option value="{{$siswa->golongan_darah}}" selected disabled>{{$siswa->golongan_darah}}</option>
                   <option value="A">A</option>
                   <option value="B">B</option>
                   <option value="AB">AB</option>
@@ -367,7 +367,7 @@
             <div class="form-group @error('agama_ayah') has-error @enderror">
                 <label for="agama">@error('agama_ayah')<i class="fa fa-times-circle-o"></i>@enderror Agama</label>
                 <select class="form-control select2" value="{{old('agama_ayah')}}" name="agama_ayah" style="width: 100%;">
-                  <option value="{{$siswa->agama_ayah}}" selected="selected">- {{$siswa->agama_ayah}} -</option>
+                  <option value="{{$siswa->agama_ayah}}" selected disabled>{{$siswa->agama_ayah}}</option>
                   <option value="Islam">Islam</option>
                   <option value="Kristen Katholik">Kristen Katholik</option>
                   <option value="Kristen Protestan">Kristen Protestan</option>
@@ -395,7 +395,7 @@
             <div class="form-group @error('pendidikan_ayah') has-error @enderror">
                 <label for="pendidikan_ayah">@error('pendidikan_ayah')<i class="fa fa-times-circle-o"></i>@enderror Pendidikan Terakhir</label>
                 <select class="form-control select2" value="{{old('pendidikan_ayah')}}" name="pendidikan_ayah" style="width: 100%;">
-                  <option value="{{$siswa->pendidikan_ayah}}" selected="selected">- {{$siswa->pendidikan_ayah}} -</option>
+                  <option value="{{$siswa->pendidikan_ayah}}" selected disabled>{{$siswa->pendidikan_ayah}}</option>
                   <option value="Tidak / Belum Sekolah">Tidak / Belum Sekolah</option>
                   <option value="SD Sederajat">SD Sederajat</option>
                   <option value="Belum Tamat SD / Sederajat">Belum Tamat SD / Sederajat</option>
@@ -486,7 +486,7 @@
               <div class="form-group @error('agama_ibu') has-error @enderror">
                   <label for="agama_ibu">@error('agama_ibu')<i class="fa fa-times-circle-o"></i>@enderror Agama</label>
                   <select class="form-control select2" value="{{old('agama_ibu')}}" name="agama_ibu" style="width: 100%;">
-                    <option value="{{$siswa->agama_ibu}}" selected="selected">- {{$siswa->agama_ibu}} -</option>
+                    <option value="{{$siswa->agama_ibu}}" selected disabled>{{$siswa->agama_ibu}}</option>
                     <option value="Islam">Islam</option>
                     <option value="Kristen Katholik">Kristen Katholik</option>
                     <option value="Kristen Protestan">Kristen Protestan</option>
@@ -514,7 +514,7 @@
               <div class="form-group @error('pendidikan_ibu') has-error @enderror">
                   <label for="pendidikan_ibu">@error('pendidikan_ibu')<i class="fa fa-times-circle-o"></i>@enderror Pendidikan Terakhir</label>
                   <select class="form-control select2" value="{{old('pendidikan_ibu')}}" name="pendidikan_ibu" style="width: 100%;">
-                    <option value="{{$siswa->pendidikan_ibu}}" selected="selected">- {{$siswa->pendidikan_ibu}} -</option>
+                    <option value="{{$siswa->pendidikan_ibu}}" selected disabled>{{$siswa->pendidikan_ibu}}</option>
                     <option value="Tidak / Belum Sekolah">Tidak / Belum Sekolah</option>
                     <option value="SD Sederajat">SD Sederajat</option>
                     <option value="Belum Tamat SD / Sederajat">Belum Tamat SD / Sederajat</option>
@@ -566,7 +566,7 @@
                 <div class="form-group @error('status') has-error @enderror">
                     <label for="status">@error('status')<i class="fa fa-times-circle-o"></i>@enderror Status Siswa</label>
                     <select class="form-control select2" name="status" style="width: 100%;">
-                      <option value="{{$siswa->status}}" selected="selected">- {{$siswa->status}} -</option>
+                      <option value="{{$siswa->status}}" selected disabled>{{$siswa->status}}</option>
                       <option value="Belum Tamat">Belum Tamat</option>
                       <option value="Tamat">Tamat</option>
                     </select>
