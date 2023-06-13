@@ -41,7 +41,7 @@
       <td>{{ $data->nis }}</td>
       <td>{{ $data->nama_lengkap }}</td>
       <td>{{ $data->jenis_kelamin }}</td>
-      <td>{{ $data->tempat_lahir }}, {{ $data->tanggal_lahir }}</td>
+      <td>{{ $data->tempat_lahir }}, {{date('d-m-Y', strtotime($data->tanggal_lahir))}}</td>
       <td>{{ $data->alamat }}</td>
       <td>{{ $data->kelas }}</td>
       <td>
@@ -58,6 +58,9 @@
           <li class="divider"></li>
           <li>
             <a href="{{route('siswa.edit', $data->nis)}}"><i class="glyphicon glyphicon-edit"></i> Ubah</a>
+          </li>
+          <li>
+            <a href="{{route('riwayat.show', $data->nis)}}"><i class="glyphicon glyphicon-sunglasses"></i> Riwayat</a>
           </li>
           <li class="divider"></li>
           <li>

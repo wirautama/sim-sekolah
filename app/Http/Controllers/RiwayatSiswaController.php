@@ -10,6 +10,11 @@ use RiwayatSiswa;
 
 class RiwayatSiswaController extends Controller
 {
+    protected $RiwayatSiswaModel;
+    public function __construct()
+    {
+        $this->RiwayatSiswaModel = new RiwayatSiswaModel();
+    }
     /**
      * Display a listing of the resource.
      *
@@ -54,8 +59,8 @@ class RiwayatSiswaController extends Controller
     public function show($nis)
     {
         $siswa = SiswaModel::find($nis);
-        $riwayat = RiwayatSiswaModel::find($nis);
-        return view('riwayat.show', compact('riwayat', 'siswa'));
+        $riwayat = $this->RiwayatSiswaModel->getRiwayat($nis);
+        return view('riwayat.show', compact('siswa', 'riwayat'));
     }
 
     /**

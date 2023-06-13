@@ -19,7 +19,7 @@ class RiwayatSiswa extends Migration
             $table->integer('semester');
             $table->integer('nilai_rata');
             $table->string('kelas', 10);
-            $table->enum('status', ['Naik Kelas', 'Tinggal Kelas']);
+            $table->enum('status_siswa', ['Naik Kelas', 'Tinggal Kelas']);
         });
         Schema::table('riwayat_siswa', function (Blueprint $table) {
             $table->foreign('nis')->references('nis')->on('siswa')->onDelete('cascade')->onUpdate('cascade');

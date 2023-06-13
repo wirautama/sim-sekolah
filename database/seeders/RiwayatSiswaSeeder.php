@@ -19,7 +19,7 @@ class RiwayatSiswaSeeder extends Seeder
             'semester' => 1,
             'nilai_rata' => 80,
             'kelas' => 'X-IPS-1',
-            'status' => 'Naik Kelas'
+            'status_siswa' => 'Naik Kelas'
         ]);
     }
 }

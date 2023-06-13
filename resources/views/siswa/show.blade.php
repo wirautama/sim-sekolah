@@ -25,7 +25,7 @@
             <tr>
                 <th>Tempat, Tanggal Lahir</th>
                 <td>:</td>
-                <td>{{ $siswa->tempat_lahir }}, {{ $siswa->tanggal_lahir }}</td>
+                <td>{{ $siswa->tempat_lahir }}, {{date('d-m-Y', strtotime($siswa->tanggal_lahir))}}</td>
             </tr>
             <tr>
                 <th>Agama</th>

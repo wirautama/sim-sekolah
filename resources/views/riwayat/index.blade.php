@@ -17,7 +17,7 @@
     $no = 1 
     ?>
     @foreach ($siswa as $data)
-    @foreach ($riwayat as $data1)
+    
     <tbody>
     <tr>
       <td>{{ $no++ }}</td>
@@ -28,13 +28,14 @@
         <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
         <span class="caret"></span>
         </button>
+        @foreach ($riwayat as $riwayat)
         <ul class="dropdown-menu pull-right" role="menu">
           <li>
-            <a href="{{route('riwayat.show', $data1->nis)}}"><i class="glyphicon glyphicon-sunglasses"></i> Riwayat</a>
+            <a href="{{route('riwayat.show', $riwayat->nis)}}"><i class="glyphicon glyphicon-sunglasses"></i> Riwayat</a>
           </li>
           <li class="divider"></li>
           <li>
-            <a href="{{route('riwayat.edit', $data1->nis)}}"><i class="glyphicon glyphicon-edit"></i> Ubah Riwayat</a>
+            <a href="{{route('riwayat.edit', $riwayat->nis)}}"><i class="glyphicon glyphicon-edit"></i> Ubah Riwayat</a>
           </li>
           <li class="divider"></li>
           <li>

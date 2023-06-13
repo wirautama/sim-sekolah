@@ -5,7 +5,7 @@
     <li class="{{ Request::is('/siswa*') ? 'active' : '' }}">
       <a href="/siswa"><i class="glyphicon glyphicon-user"></i><span>Data Siswa</span></a>
     </li>
-    <li class="{{ Request::is('/riwayat*') ? 'active' : '' }}">
+    {{-- <li class="{{ Request::is('/riwayat*') ? 'active' : '' }}">
       <a href="/riwayat"><i class="glyphicon glyphicon-user"></i><span>Riwayat Siswa</span></a>
-    </li>
+    </li> --}}
   </ul>

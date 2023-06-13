@@ -23,12 +23,11 @@
   </tbody>
 </table>
 
-<h3>D. Data Riwayat</h3>
+<h3>Data Riwayat</h3>
 <table id="example1" class="table table-bordered table-striped">
   <thead>
     <tr>
       <th>No.</th>
-      <th>ID</th>
       <th>NIS</th>
       <th>Semester</th>
       <th>Kelas</th>
@@ -39,15 +38,15 @@
   </thead>
   <tbody>
     <?php $nomor = 1; ?>
-
+    @foreach($riwayat as $riwayat)
     <tr>
       <td>{{ $nomor++ }} .</td>
-      <td>{{ $riwayat->id }}</td>
       <td>{{ $riwayat->nis }}</td>
       <td>{{ $riwayat->semester }}</td>
       <td>{{ $riwayat->kelas }}</td>
       <td>{{ $riwayat->nilai_rata }}</td>
-      <td>{{ $riwayat->status }}</td>
+      <td>
+        <span class="{{ $riwayat->status_siswa === 'Naik Kelas' ? 'label label-success' : 'label label-danger' }}">{{ $riwayat->status_siswa }}</span></td>
       <td>
         <!-- Single button -->
         <div class="btn-group pull-right">
@@ -64,6 +63,7 @@
         </div>
       </td>
     </tr>
+    @endforeach
   </tbody>
 </table>
 
