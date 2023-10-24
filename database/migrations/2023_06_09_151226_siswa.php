@@ -69,7 +69,7 @@ class Siswa extends Migration
 
             // Keterangan Lain
             $table->enum('status', ['Tamat', 'Belum Tamat']);
-            $table->string('avatar', 255)->default('avatar.png');
+            $table->string('avatar', 255)->default('avatar.png')->nullable();
             $table->timestamps();
         });
     }

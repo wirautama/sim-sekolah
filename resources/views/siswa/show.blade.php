@@ -7,6 +7,17 @@
         <div class="col-6">
             <table class="table table-striped">
                 <h3>A. Data Pribadi Siswa</h3>
+            @if($siswa->avatar)
+            <tr>
+                <th width="20%">Profile</th>
+                <td width="1%">:</td>
+                <td><img src="{{Storage::url($siswa->avatar)}}" width="10%" class="img-fluid" alt=""></td>
+            </tr>
+                {{-- <img src="{{asset('storage/. $siswa->avatar')}}" class="img-fluid mt-3" alt=""> --}}
+            @else
+            <tr>
+                <img src="{{asset('img')}}/default.svg" class="img-fluid mt-3" alt="">
+            @endif
             <tr>
                 <th width="20%">NIS</th>
                 <td width="1%">:</td>

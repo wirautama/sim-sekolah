@@ -6,14 +6,11 @@ use App\Models\SiswaModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
+use RiwayatSiswa;
 
 class SiswaController extends Controller
 {
     protected $SiswaModel;
-    // public function __construct()
-    // {
-    //     $this->SiswaModel = new SiswaModel();
-    // }
     /**
      * Display a listing of the resource.
      *
@@ -97,6 +94,7 @@ class SiswaController extends Controller
             'avatar' => 'image|file|mimes:jpeg,png,jpg,gif,svg|max:1024'
         ]);
 
+
         SiswaModel::create([
             'nis' => $request->nis,
             'nama_lengkap' => $request->nama_lengkap,
@@ -143,6 +141,11 @@ class SiswaController extends Controller
             'status' => $request->status,
             'avatar' => $request->avatar
         ]);
+        if ($request->hasFile('avatar')) {
+            $file = $request->file('avatar');
+            $filename = $file->getClientOriginalName();
+            $file->storeAs('avatar', $filename);
+        }
 
         return redirect()->route('siswa.index')->with('success', 'Data Berhasil Disimpan');
     }
@@ -157,6 +160,7 @@ class SiswaController extends Controller
     {
 
         $siswa = SiswaModel::find($nis);
+
 
         return view('siswa.show', compact('siswa'));
     }

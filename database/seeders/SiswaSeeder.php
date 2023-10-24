@@ -67,7 +67,7 @@ class SiswaSeeder extends Seeder
             'no_telp_ibu' => '08888080808',
             // Keterangan Lain
             'status' => 'Belum Tamat',
-            'avatar' => 'avatar.png',
+            'avatar' => 'default.svg',
             'created_at' => now(),
             'updated_at' => now()
         ]);
